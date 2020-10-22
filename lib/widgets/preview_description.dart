@@ -15,11 +15,14 @@ class PreviewDescription extends StatelessWidget {
       return Text(
         _description,
         textAlign: TextAlign.left,
+
         maxLines: _descriptionLines,
         style: TextStyle(
           fontSize: 14,
           color: _textColor,
+
         ),
+
       );
     } else {
       return SizedBox();

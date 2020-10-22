@@ -45,7 +45,7 @@ class SimpleUrlPreview extends StatefulWidget {
 
   SimpleUrlPreview({
     @required this.url,
-    this.previewHeight = 130.0,
+    this.previewHeight = 250,
     this.isClosable,
     this.textColor,
     this.bgColor,
@@ -170,16 +170,10 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
     }
 
     return Container(
-      padding: _previewContainerPadding,
       height: _previewHeight,
-      child: Stack(
-        children: [
-          GestureDetector(
-            onTap: _onTap,
-            child: _buildPreviewCard(context),
-          ),
-          _buildClosablePreview(),
-        ],
+      child: GestureDetector(
+        onTap: _onTap,
+        child: _buildPreviewCard(context),
       ),
     );
   }
@@ -203,18 +197,15 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
         : SizedBox();
   }
 
-  Card _buildPreviewCard(BuildContext context) {
-    return Card(
-      elevation: 5,
-      color: _bgColor,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  Container _buildPreviewCard(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+          border: Border.all(color: Colors.grey,width: 1),
+          color: _bgColor,
+          borderRadius: BorderRadius.circular(5)),
+      child: Column(
         children: [
           Container(
-            width: (MediaQuery.of(context).size.width -
-                    MediaQuery.of(context).padding.left -
-                    MediaQuery.of(context).padding.right) *
-                0.25,
             child: PreviewImage(
               _urlPreviewData['og:image'],
               _imageLoaderColor,
@@ -224,7 +215,7 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
             child: Padding(
               padding: EdgeInsets.all(8),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   PreviewTitle(
@@ -237,10 +228,7 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
                     _textColor,
                     _descriptionLines,
                   ),
-                  PreviewSiteName(
-                    _urlPreviewData['og:site_name'],
-                    _textColor,
-                  ),
+
                 ],
               ),
             ),

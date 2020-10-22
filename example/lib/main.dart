@@ -31,7 +31,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String _url = '';
+  String _url = 'https://pub.dev/';
 
   _onUrlChanged(String updatedUrl) {
     setState(() {
@@ -45,31 +45,19 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          SimpleUrlPreview(
-            url: _url,
-            textColor: Colors.white,
-            bgColor: Colors.red,
-            isClosable: true,
-            titleLines: 2,
-            descriptionLines: 3,
-            imageLoaderColor: Colors.white,
-            previewHeight: 150,
-            previewContainerPadding: EdgeInsets.all(10),
-            onTap: () => print('Hello Flutter URL Preview'),
-          ),
-          Padding(
-            padding: EdgeInsets.all(20),
-            child: TextField(
-              onChanged: (newValue) => _onUrlChanged(newValue),
-              decoration: InputDecoration(
-                hintText: 'Enter the url',
-              ),
-            ),
-          ),
-        ],
+      body: Center(
+        child: SimpleUrlPreview(
+          url: _url,
+          textColor: Colors.black,
+          bgColor: Colors.grey[200],
+          isClosable: true,
+          titleLines: 2,
+          descriptionLines: 3,
+          imageLoaderColor: Colors.white,
+
+          previewContainerPadding: EdgeInsets.all(10),
+          onTap: () => print('Hello Flutter URL Preview'),
+        ),
       ),
     );
   }
